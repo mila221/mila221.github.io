@@ -1,0 +1,33 @@
+<html>
+	<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="css1.css"/>
+	</head>
+	<body>
+		<div id="nav">
+			<ul id="nav_ul">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="uvod.html">Uvod</a></li>
+				<li><a href="teze.html">Teze</a></li>
+				<li style="background-color:#9DBBAE;"><a href="zakljucak.html">Zakljucak</a></li>
+				<li><a href="reference.html">Reference</a></li>
+			</ul>
+		</div>
+		<div id="cont1">
+			<p class="p_zak">Lorem ipsum dolor sit amet, coLorem ipsum ur adipiscing elit, sed do eiusmod te magna aliqua.ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minUt enim ad minim veniam, quis nostrud exercitati ex ea commodo coit in giat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<div id="slike_cont_zak">
+				<img class="slike_zak pojavi" width="150" height="160" src="nice.jpg"/>
+				<img class="slike_zak pojavi" width="150" height="160" src="nice.jpg"/>
+				<img class="slike_zak pojavi" width="150" height="160" src="nice.jpg"/>
+			</div>
+			
+		</div>
+		<script>
+		$(document).ready(function() { 
+		   $('.pojavi').each(function(fadeInDiv){
+			 $(this).delay(fadeInDiv * 1000).fadeIn(1000);
+		   });
+		});
+		</script>
+	</body>
+</html>

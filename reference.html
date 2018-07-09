@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="css1.css"/>
+	</head>
+	<body>
+		<div id="nav">
+			<ul id="nav_ul">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="uvod.html">Uvod</a></li>
+				<li><a href="teze.html">Teze</a></li>
+				<li><a href="zakljucak.html">Zakljucak</a></li>
+				<li style="background-color:#9DBBAE;"><a href="reference.html">Reference</a></li>
+			</ul>
+		</div>
+		<div id="cont1">
+			<div id="ref_cont">
+				<div id="tacka"></div>
+				<div id="linija"></div>
+				<p class="ref pojavi">Lorem ipsum dolor sit amet, coLorem ipsum ur adipiscing elit, sed do eiusmod te magna</p>
+				<p class="ref pojavi">Lorem ipsum dolor sit amet, coLorem ipsum ur adipiscing elit, sed do eiusmod te magna</p>
+				<p class="ref pojavi">Lorem ipsum dolor sit amet, coLorem ipsum ur adipiscing elit, sed do eiusmod te magna</p>
+				<p class="ref pojavi">Lorem ipsum dolor sit amet, coLorem ipsum ur adipiscing elit, sed do eiusmod te magna</p>
+				<p class="ref pojavi">Lorem ipsum dolor sit amet, coLorem ipsum ur adipiscing elit, sed do eiusmod te magna</p>
+				<p class="ref pojavi">Lorem ipsum dolor sit amet, coLorem ipsum ur adipiscing elit, sed do eiusmod te magna</p>
+				<p class="ref pojavi">Lorem ipsum dolor sit amet, coLorem ipsum ur adipiscing elit, sed do eiusmod te magna</p>
+				<p class="ref pojavi">Lorem ipsum dolor sit amet, coLorem ipsum ur adipiscing elit, sed do eiusmod te magna</p>
+			</div>
+		</div>
+		
+		<script>
+		$(document).ready(function() { 
+		   $('.pojavi').each(function(fadeInDiv){
+			 $(this).delay(fadeInDiv * 1000).fadeIn(1000);
+		   });
+		});
+		</script>
+	</body>
+</html>

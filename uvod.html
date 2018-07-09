@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="css1.css"/>
+	</head>
+	
+	<body>
+		<div id="nav">
+			<ul id="nav_ul">
+				<li><a href="index.html">Home</a></li>
+				<li style="background-color:#9DBBAE;"><a href="uvod.html">Biografija</a></li>
+				<li><a href="teze.html">Stvaralastvo</a></li>
+				<li><a href="zakljucak.html">Antihrist</a></li>
+				<li><a href="reference.html">Reference</a></li>
+			</ul>
+		</div>
+		
+		<div id="cont1">
+			<p class="p_uvod">Fridrih Vilhelm Niče (Friedrich Wilhelm Nietzsche) bio je radikalni nemački filozof, filolog i pesnik, utemeljivač „filozofije životaˮ („Lebens-philosophiaeˮ), jedan od najvećih modernih mislilaca i jedan od najoštrijih kritičara zapadne civilizacije, kulture i hrišćanstva. Rođen je 15. oktobra 1844. godine u Rekenu (Pruska) u blizini Lajpciga, u protestantskoj porodici. NJegov otac Ludvig, kao i njegov deda, bili su protestanski pastori. Otac mu je umro kada je imao samo četiri godine što je ostavilo dubok trag na njega. Brigu o njemu od tada su vodile majka, tetka i sestra. Školovao se u Gimnaziji u Pforti, u blizini Naumburga.</p>
+			<div id="slike_cont">
+				<img class="slike pojavi" width="130" height="160" src="nice5.jpg"/>
+				<img class="slike pojavi" width="140" height="160" src="nice.jpg"/>
+				<img class="slike pojavi" width="130" height="160" src="nice4.png"/>
+			</div>
+		</div>
+		<div id="cont2">
+			<p class="p_uvod">Fridrih Vilhelm Niče (Friedrich Wilhelm Nietzsche) bio je radikalni nemački filozof, filolog i pesnik, utemeljivač „filozofije životaˮ („Lebens-philosophiaeˮ), jedan od najvećih modernih mislilaca i jedan od najoštrijih kritičara zapadne civilizacije, kulture i hrišćanstva. Rođen je 15. oktobra 1844. godine u Rekenu (Pruska) u blizini Lajpciga, u protestantskoj porodici. NJegov otac Ludvig, kao i njegov deda, bili su protestanski pastori. Otac mu je umro kada je imao samo četiri godine što je ostavilo dubok trag na njega. Brigu o njemu od tada su vodile majka, tetka i sestra. Školovao se u Gimnaziji u Pforti, u blizini Naumburga.</p>
+			<div id="slike_cont">
+				<img class="slike pojavi" width="130" height="160" src="nice5.jpg"/>
+				<img class="slike pojavi" width="140" height="160" src="nice.jpg"/>
+				<img class="slike pojavi" width="130" height="160" src="nice4.png"/>
+			</div>
+		</div>
+		
+		
+		<script>
+		$(document).ready(function() { 
+		   $('.pojavi').each(function(fadeInDiv){
+			 $(this).delay(fadeInDiv * 1000).fadeIn(1000);
+		   });
+		});
+		</script>
+		
+	</body>
+</html>
