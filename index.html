@@ -33,9 +33,10 @@
 		    } else if(huawei) {
 			window.location.href = huaweiStoreURL;
 		    }
-		}, 2000);
+		}, 5000);
 	    } catch (e) {
 		// In case of an error or exception, redirect to the respective app store.
+		alert('ERROR');
 		if(iOS) {
 		    window.location.href = appleAppStoreURL;
 		} else if(android) {
