@@ -5,4 +5,47 @@
 	<body>
 		<h1>Hello</h1>
 	</body>
+	<script>
+	document.addEventListener("DOMContentLoaded", function() {
+	    var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+	    var android = /Android/.test(navigator.userAgent);
+	    var huawei = /huawei|HONOR/.test(navigator.userAgent.toLowerCase()); // Note: This is a basic detection and might not be 100% accurate.
+	
+	    // Define the custom URI scheme for your app here.
+	    var appURI = "addiko://"; // replace 'myapp' with your app's custom URI scheme
+	
+	    // Define URLs for your app in each app store.
+	    var appleAppStoreURL = "https://apps.apple.com/app/id1135444312"; // replace 'YOUR_APP_ID' with your app's ID
+	    var googlePlayStoreURL = "https://play.google.com/store/apps/details?id=com.addiko.mobile.serbia"; // replace 'YOUR_PACKAGE_NAME' with your app's package name
+	    var huaweiStoreURL = "https://appgallery.huawei.com/app/C104332571"; // replace 'YOUR_APP_DETAILS' with the appropriate path or ID
+	
+	    // Attempt to open the app using the custom URI scheme.
+	    // If the app isn't installed, this will fail and we'll catch that to redirect to the app store.
+	    try {
+		window.location.href = appURI;
+	
+		// If the app isn't opened in 2 seconds, assume it's not installed and redirect to the store.
+		setTimeout(function() {
+		    if(iOS) {
+			window.location.href = appleAppStoreURL;
+		    } else if(android) {
+			window.location.href = googlePlayStoreURL;
+		    } else if(huawei) {
+			window.location.href = huaweiStoreURL;
+		    }
+		}, 2000);
+	    } catch (e) {
+		// In case of an error or exception, redirect to the respective app store.
+		if(iOS) {
+		    window.location.href = appleAppStoreURL;
+		} else if(android) {
+		    window.location.href = googlePlayStoreURL;
+		} else if(huawei) {
+		    window.location.href = huaweiStoreURL;
+		}
+	    }
+	});
+
+		
+	</script>
 </html>
