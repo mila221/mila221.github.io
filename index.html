@@ -3,7 +3,7 @@
 		<title>Deeplink</title>
 	</head>
 	<body>
-		<h1>HelloOOOOOOoooooooooooooooo</h1>
+		<h1>novoo</h1>
 		<a href="addiko://" id="openAppLink" target="_blank">Open App</a>
 	</body>
 	<script>
@@ -23,16 +23,32 @@
 	    // Attempt to open the app using the custom URI scheme.
 	    // If the app isn't installed, this will fail and we'll catch that to redirect to the app store.
 	   document.getElementById("openAppLink").addEventListener("click", function(event) {
-	        setTimeout(function() {
-	            if(iOS) {
-	                window.location.href = appleAppStoreURL;
-	            } else if(android) {
-	                window.location.href = googlePlayStoreURL;
-	            } else if(huawei) {
-	                window.location.href = huaweiStoreURL;
-	            }
-	        }, 2000);
-	    });
+                if (appURI.startsWith("http://") || appURI.startsWith("https://")) {
+                    // Allow the normal behavior
+                } else {
+                    // Prevent the default behavior
+                    event.preventDefault();
+
+                    // Try to open the app in a new tab
+                    var newTab = window.open(appURI, '_blank');
+
+                    // Redirect to the store after a delay if the app doesn't open
+                    setTimeout(function() {
+                        if (iOS) {
+                            window.location.href = appleAppStoreURL;
+                        } else if (android) {
+                            window.location.href = googlePlayStoreURL;
+                        } else if (huawei) {
+                            window.location.href = huaweiStoreURL;
+                        }
+                    }, 2000);
+
+                    // Close the new tab after a short delay (if the app isn't installed and the tab shows an error)
+                    setTimeout(function() {
+                        newTab.close();
+                    }, 100);
+                }
+            });
 	});
 
 		
