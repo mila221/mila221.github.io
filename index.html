@@ -3,7 +3,7 @@
 		<title>Deeplink</title>
 	</head>
 	<body>
-		<h1>novoo 7</h1>
+		<h1>novoo 8</h1>
 		<a id="openAppLink" href="addiko://">Open App</a>
 	</body>
 	<script>
@@ -23,18 +23,18 @@
 	    // Attempt to open the app using the custom URI scheme.
 	    // If the app isn't installed, this will fail and we'll catch that to redirect to the app store.
 	   document.getElementById("openAppLink").addEventListener("click", function(event) {
-                if (appURI.startsWith("http://") || appURI.startsWith("https://")) {
+                //if (appURI.startsWith("http://") || appURI.startsWith("https://")) {
                     // Allow the normal behavior
-                } else {
+              //  } else {
                     // Prevent the default behavior
-                    event.preventDefault();
+                   // event.preventDefault();
 
                     // Try to open the app in a new tab
-                    var newTab = window.open(appURI, '_blank');
-			    if (android) {
-				alert('ANDROID');
-	                    	newTab.close();
-		    	}
+                    //var newTab = window.open(appURI, '_blank');
+			    //if (android) {
+			//	alert('ANDROID');
+	                    //	newTab.close();
+		    	//}
                  
                     // Redirect to the store after a delay if the app doesn't open
                     setTimeout(function() {
@@ -48,9 +48,9 @@
                     }, 2000);
 
                     // Close the new tab after a short delay (if the app isn't installed and the tab shows an error)
-                    setTimeout(function() {
-                        newTab.close();
-                    }, 100);
+                    //setTimeout(function() {
+                      //  newTab.close();
+                    //}, 100);
                 }
             });
 	});
