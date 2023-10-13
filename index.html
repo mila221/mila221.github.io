@@ -3,7 +3,7 @@
 		<title>Deeplink</title>
 	</head>
 	<body>
-		<h1>novoo</h1>
+		<h1>novoo 2</h1>
 		<a href="addiko://" id="openAppLink" target="_blank">Open App</a>
 	</body>
 	<script>
@@ -31,7 +31,9 @@
 
                     // Try to open the app in a new tab
                     var newTab = window.open(appURI, '_blank');
-
+		    if (android){
+			    window.history.back();
+		    }
                     // Redirect to the store after a delay if the app doesn't open
                     setTimeout(function() {
                         if (iOS) {
