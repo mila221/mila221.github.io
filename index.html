@@ -3,7 +3,7 @@
 		<title>Deeplink</title>
 	</head>
 	<body>
-		<h1>novoo 6</h1>
+		<h1>novoo 7</h1>
 		<a id="openAppLink" href="addiko://">Open App</a>
 	</body>
 	<script>
@@ -32,13 +32,8 @@
                     // Try to open the app in a new tab
                     var newTab = window.open(appURI, '_blank');
 			    if (android) {
-	                    // Use an iframe to attempt to open the app on Android to avoid the error
-	                    event.preventDefault(); // Prevent the default behavior of the link
-	
-	                    var iframe = document.createElement('iframe');
-	                    iframe.style.display = 'none';
-	                    iframe.src = appURI;
-	                    document.body.appendChild(iframe);
+				alert('ANDROID');
+	                    	newTab.close();
 		    	}
                  
                     // Redirect to the store after a delay if the app doesn't open
