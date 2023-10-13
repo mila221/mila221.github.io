@@ -4,6 +4,7 @@
 	</head>
 	<body>
 		<h1>HelloOOOOOO</h1>
+		<button id="openAppButton">Open App</button>
 	</body>
 	<script>
 	document.addEventListener("DOMContentLoaded", function() {
@@ -21,30 +22,19 @@
 	
 	    // Attempt to open the app using the custom URI scheme.
 	    // If the app isn't installed, this will fail and we'll catch that to redirect to the app store.
-	    try {
-		window.location.href = appURI;
+	   document.getElementById("openAppButton").addEventListener("click", function() {
+	        window.location.href = appURI;
 	
-		// If the app isn't opened in 2 seconds, assume it's not installed and redirect to the store.
-		setTimeout(function() {
-		    if(iOS) {
-			window.location.href = appleAppStoreURL;
-		    } else if(android) {
-			window.location.href = googlePlayStoreURL;
-		    } else if(huawei) {
-			window.location.href = huaweiStoreURL;
-		    }
-		}, 5000);
-	    } catch (e) {
-		// In case of an error or exception, redirect to the respective app store.
-		alert('ERROR');
-		if(iOS) {
-		    window.location.href = appleAppStoreURL;
-		} else if(android) {
-		    window.location.href = googlePlayStoreURL;
-		} else if(huawei) {
-		    window.location.href = huaweiStoreURL;
-		}
-	    }
+	        setTimeout(function() {
+	            if(iOS) {
+	                window.location.href = appleAppStoreURL;
+	            } else if(android) {
+	                window.location.href = googlePlayStoreURL;
+	            } else if(huawei) {
+	                window.location.href = huaweiStoreURL;
+	            }
+	        }, 2000);
+	    });
 	});
 
 		
