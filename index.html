@@ -3,8 +3,8 @@
 		<title>Deeplink</title>
 	</head>
 	<body>
-		<h1>HelloOOOOOO</h1>
-		<button id="openAppButton">Open App</button>
+		<h1>HelloOOOOOOoooooooooooooooo</h1>
+		<a href="addiko://" id="openAppLink" target="_blank">Open App</a>
 	</body>
 	<script>
 	document.addEventListener("DOMContentLoaded", function() {
@@ -22,9 +22,7 @@
 	
 	    // Attempt to open the app using the custom URI scheme.
 	    // If the app isn't installed, this will fail and we'll catch that to redirect to the app store.
-	   document.getElementById("openAppButton").addEventListener("click", function() {
-	        window.location.href = appURI;
-	
+	   document.getElementById("openAppLink").addEventListener("click", function(event) {
 	        setTimeout(function() {
 	            if(iOS) {
 	                window.location.href = appleAppStoreURL;
