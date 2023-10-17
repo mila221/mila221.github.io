@@ -3,7 +3,7 @@
 		<title>Deeplink</title>
 	</head>
 	<body>
-		<h1>novoo 13</h1>
+		<h1>novoo 14</h1>
 		<a id="openAppLink" href="addiko://">Open App</a>
 	</body>
 	<script>
@@ -46,6 +46,26 @@
 		        document.addEventListener('visibilitychange', handleVisibilityChange);
 		
 		        window.location = appURIios; 
+		
+		        setTimeout(clearEventsAndRedirectToStore, 2000); // Adjust based on testing
+		    } else if (android){
+			var hasAppOpened = false;
+		
+		        var clearEventsAndRedirectToStore = function() {
+		            if (!hasAppOpened) {
+		                document.removeEventListener('visibilitychange', handleVisibilityChange);
+		                window.location = googlePlayStoreURL;
+		            }
+		        };
+		
+		        var handleVisibilityChange = function() {
+		            if (document.hidden) {
+		                hasAppOpened = true;
+		            }
+		        };
+		        document.addEventListener('visibilitychange', handleVisibilityChange);
+		
+		        window.location = appURIandroid; 
 		
 		        setTimeout(clearEventsAndRedirectToStore, 2000); // Adjust based on testing
 		    }
