@@ -3,7 +3,7 @@
 		<title>Deeplink</title>
 	</head>
 	<body>
-		<h1>novoo 11</h1>
+		<h1>novoo 12</h1>
 		<a id="openAppLink" href="addiko://">Open App</a>
 	</body>
 	<script>
@@ -24,43 +24,32 @@
 	    // Attempt to open the app using the custom URI scheme.
 	    // If the app isn't installed, this will fail and we'll catch that to redirect to the app store.
 	    var link = document.getElementById("openAppLink");
-	    if (iOS) {
-		var visibilityChange;
-		    if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
-		        visibilityChange = "visibilitychange";
-		    } else if (typeof document.msHidden !== "undefined") {
-		        visibilityChange = "msvisibilitychange";
-		    } else if (typeof document.webkitHidden !== "undefined") {
-		        visibilityChange = "webkitvisibilitychange";
+	    
+	    document.getElementById("openAppLink").addEventListener('click', function(e) {
+		    e.preventDefault(); // Prevent default behavior
+		
+		    if (iOS) {
+		        var hasAppOpened = false;
+		
+		        var clearEventsAndRedirectToStore = function() {
+		            if (!hasAppOpened) {
+		                document.removeEventListener('visibilitychange', handleVisibilityChange);
+		                window.location = appleAppStoreURL;
+		            }
+		        };
+		
+		        var handleVisibilityChange = function() {
+		            if (document.hidden) {
+		                hasAppOpened = true;
+		            }
+		        };
+		        document.addEventListener('visibilitychange', handleVisibilityChange);
+		
+		        window.location = appURIios; 
+		
+		        setTimeout(clearEventsAndRedirectToStore, 500); // Adjust based on testing
 		    }
-		
-		    var hasAppOpened = false;
-		
-		    document.addEventListener(visibilityChange, function() {
-		        if (!document.hidden) {
-		            hasAppOpened = true;
-		        }
-		    }, false);
-		
-		    setTimeout(function() {
-		        if (!hasAppOpened) {
-		            window.location = appleAppStoreURL;
-		        }
-		    }, 2000); // Adjust this delay based on testing. 
-		
-		    window.location = appURIios;
-		//setTimeout(function(){ window.location = appleAppStoreURL; }, 200);
-                //window.location = appURIios;
-		//link.href = appURIios;
-	    } else {
-		setTimeout(function(){ window.location = googlePlayStoreURL; }, 200);
-                window.location = appURIandroid;
-		//link.href = appURIandroid;
-	    }
-	    //document.getElementById("openAppLink").addEventListener("click", function(event) {
-            //    setTimeout(function(){ window.location = "blabla"; }, 100);
-            //    window.location = "addiko";
-            //});
+		});
 	});
 
 		
