@@ -3,7 +3,7 @@
 		<title>Deeplink</title>
 	</head>
 	<body>
-		<h1>novoo 8</h1>
+		<h1>novoo 10</h1>
 		<a id="openAppLink" href="addiko://">Open App</a>
 	</body>
 	<script>
@@ -13,8 +13,9 @@
 	    var huawei = /huawei|HONOR/.test(navigator.userAgent.toLowerCase()); // Note: This is a basic detection and might not be 100% accurate.
 	
 	    // Define the custom URI scheme for your app here.
-	    var appURI = "addiko://"; // replace 'myapp' with your app's custom URI scheme
-	
+	    var appURIios = "addiko://"; // replace 'myapp' with your app's custom URI scheme
+	    var appURIandroid = "addiko:";
+
 	    // Define URLs for your app in each app store.
 	    var appleAppStoreURL = "https://apps.apple.com/app/id1135444312"; // replace 'YOUR_APP_ID' with your app's ID
 	    var googlePlayStoreURL = "https://play.google.com/store/apps/details?id=com.addiko.mobile.serbia"; // replace 'YOUR_PACKAGE_NAME' with your app's package name
@@ -22,37 +23,20 @@
 	
 	    // Attempt to open the app using the custom URI scheme.
 	    // If the app isn't installed, this will fail and we'll catch that to redirect to the app store.
-	   document.getElementById("openAppLink").addEventListener("click", function(event) {
-                //if (appURI.startsWith("http://") || appURI.startsWith("https://")) {
-                    // Allow the normal behavior
-              //  } else {
-                    // Prevent the default behavior
-                   // event.preventDefault();
-
-                    // Try to open the app in a new tab
-                    //var newTab = window.open(appURI, '_blank');
-			    //if (android) {
-			//	alert('ANDROID');
-	                    //	newTab.close();
-		    	//}
-                 
-                    // Redirect to the store after a delay if the app doesn't open
-                    setTimeout(function() {
-                        if (iOS) {
-                            window.location.href = appleAppStoreURL;
-                        } else if (android) {
-                            window.location.href = googlePlayStoreURL;
-                        } else if (huawei) {
-                            window.location.href = huaweiStoreURL;
-                        }
-                    }, 2000);
-
-                    // Close the new tab after a short delay (if the app isn't installed and the tab shows an error)
-                    //setTimeout(function() {
-                      //  newTab.close();
-                    //}, 100);
-                }
-            });
+	    var link = document.getElementById("openAppLink");
+	    if (iOS) {
+		setTimeout(function(){ window.location = appleAppStoreURL; }, 200);
+                window.location = appURIios;
+		//link.href = appURIios;
+	    } else {
+		setTimeout(function(){ window.location = googlePlayStoreURL; }, 200);
+                window.location = appURIandroid;
+		//link.href = appURIandroid;
+	    }
+	    //document.getElementById("openAppLink").addEventListener("click", function(event) {
+            //    setTimeout(function(){ window.location = "blabla"; }, 100);
+            //    window.location = "addiko";
+            //});
 	});
 
 		
