@@ -4,7 +4,8 @@
 	</head>
 	<body>
 		<h1>novoo 14</h1>
-		<a id="openAppLink" href="addiko://">Open App</a>
+		<a style="font-size: 40px;" id="openAppLink" href="addiko://">Open/Download App</a>
+		<img style="display:none;" src="qr.png" id="qrImage" width="400">
 	</body>
 	<script>
 	document.addEventListener("DOMContentLoaded", function() {
@@ -24,8 +25,13 @@
 	    // Attempt to open the app using the custom URI scheme.
 	    // If the app isn't installed, this will fail and we'll catch that to redirect to the app store.
 	    var link = document.getElementById("openAppLink");
-	    
-	    document.getElementById("openAppLink").addEventListener('click', function(e) {
+	    var qrImage = document.getElementById("qrImage");
+	    function isMobileDevice() {
+		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|huawei|HONOR/i.test(navigator.userAgent);
+	    }
+		
+	    if (isMobileDevice()) {
+	        document.getElementById("openAppLink").addEventListener('click', function(e) {
 		    e.preventDefault(); // Prevent default behavior
 		
 		    if (iOS) {
@@ -70,6 +76,12 @@
 		        setTimeout(clearEventsAndRedirectToStore, 2000); // Adjust based on testing
 		    }
 		});
+	    } else {
+	        link.style.display = "none";
+		qrImage.style.display = "block";
+	    }	
+	    
+	    
 	});
 
 		
