@@ -25,8 +25,32 @@
 	    // If the app isn't installed, this will fail and we'll catch that to redirect to the app store.
 	    var link = document.getElementById("openAppLink");
 	    if (iOS) {
-		setTimeout(function(){ window.location = appleAppStoreURL; }, 200);
-                window.location = appURIios;
+		var visibilityChange;
+		    if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
+		        visibilityChange = "visibilitychange";
+		    } else if (typeof document.msHidden !== "undefined") {
+		        visibilityChange = "msvisibilitychange";
+		    } else if (typeof document.webkitHidden !== "undefined") {
+		        visibilityChange = "webkitvisibilitychange";
+		    }
+		
+		    var hasAppOpened = false;
+		
+		    document.addEventListener(visibilityChange, function() {
+		        if (!document.hidden) {
+		            hasAppOpened = true;
+		        }
+		    }, false);
+		
+		    setTimeout(function() {
+		        if (!hasAppOpened) {
+		            window.location = appleAppStoreURL;
+		        }
+		    }, 1000); // Adjust this delay based on testing. 
+		
+		    window.location = appURIios;
+		//setTimeout(function(){ window.location = appleAppStoreURL; }, 200);
+                //window.location = appURIios;
 		//link.href = appURIios;
 	    } else {
 		setTimeout(function(){ window.location = googlePlayStoreURL; }, 200);
