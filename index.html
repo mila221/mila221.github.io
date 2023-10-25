@@ -1,10 +1,18 @@
 <html>
 	<head>
 		<title>Deeplink</title>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-M4SCQXMK2B"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		
+		  gtag('config', 'G-M4SCQXMK2B');
+		</script>
 	</head>
 	<body>
-		<h1>novoo 14</h1>
-		<a style="font-size: 40px;" id="openAppLink" href="addiko://">Open/Download App</a>
+		<h1 id="naslovDeeplink">Kliknite na dugme ispod kako biste otvorili Addiko mobilnu aplikaciju.</h1>
+		<a style="font-size: 40px;" id="openAppLink" href="addiko://">Otvorite aplikaciju</a>
 		<img style="display:none;" src="qr.png" id="qrImage" width="400">
 	</body>
 	<script>
@@ -16,6 +24,7 @@
 	    // Define the custom URI scheme for your app here.
 	    var appURIios = "addiko://"; // replace 'myapp' with your app's custom URI scheme
 	    var appURIandroid = "addiko:";
+	    var appURIhuawei = "addiko:";
 
 	    // Define URLs for your app in each app store.
 	    var appleAppStoreURL = "https://apps.apple.com/app/id1135444312"; // replace 'YOUR_APP_ID' with your app's ID
@@ -26,6 +35,7 @@
 	    // If the app isn't installed, this will fail and we'll catch that to redirect to the app store.
 	    var link = document.getElementById("openAppLink");
 	    var qrImage = document.getElementById("qrImage");
+	    var naslovDeeplink = document.getElementById('naslovDeeplink');
 	    function isMobileDevice() {
 		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|huawei|HONOR/i.test(navigator.userAgent);
 	    }
@@ -35,6 +45,10 @@
 		    e.preventDefault(); // Prevent default behavior
 		
 		    if (iOS) {
+			gtag('event', 'virtual_pageview', {
+		            'page_path': '/virtual/ios-click',
+		            'page_title': 'iOS App Click'
+		        });
 		        var hasAppOpened = false;
 		
 		        var clearEventsAndRedirectToStore = function() {
@@ -55,6 +69,10 @@
 		
 		        setTimeout(clearEventsAndRedirectToStore, 2000); // Adjust based on testing
 		    } else if (android){
+			gtag('event', 'virtual_pageview', {
+		            'page_path': '/virtual/android-click',
+		            'page_title': 'Android App Click'
+		        });
 			var hasAppOpened = false;
 		
 		        var clearEventsAndRedirectToStore = function() {
@@ -74,10 +92,35 @@
 		        window.location = appURIandroid; 
 		
 		        setTimeout(clearEventsAndRedirectToStore, 2000); // Adjust based on testing
+		    } else if (huawei) {
+			gtag('event', 'virtual_pageview', {
+		            'page_path': '/virtual/huawei-click',
+		            'page_title': 'Huawei App Click'
+		        });
+			var hasAppOpened = false;
+		
+		        var clearEventsAndRedirectToStore = function() {
+		            if (!hasAppOpened) {
+		                document.removeEventListener('visibilitychange', handleVisibilityChange);
+		                window.location = huaweiStoreURL;
+		            }
+		        };
+		
+		        var handleVisibilityChange = function() {
+		            if (document.hidden) {
+		                hasAppOpened = true;
+		            }
+		        };
+		        document.addEventListener('visibilitychange', handleVisibilityChange);
+		
+		        window.location = appURIhuawei; 
+		
+		        setTimeout(clearEventsAndRedirectToStore, 2000); // Adjust based on testing
 		    }
 		});
 	    } else {
 	        link.style.display = "none";
+		naslovDeeplink.textContent = 'Skenirajte QR kod i otvorite Addiko mobilnu aplikaciju.';
 		qrImage.style.display = "block";
 	    }	
 	    
