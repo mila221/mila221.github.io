@@ -3,16 +3,16 @@
 		<title>Deeplink</title>
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-M4SCQXMK2B"></script>
 		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
+		 // window.dataLayer = window.dataLayer || [];
+		//  function gtag(){dataLayer.push(arguments);}
+		//  gtag('js', new Date());
 		
-		  gtag('config', 'G-M4SCQXMK2B');
+		 // gtag('config', 'G-M4SCQXMK2B');
 		</script>
 	</head>
 	<body>
 		<h1 id="naslovDeeplink">Kliknite na dugme ispod kako biste otvorili Addiko mobilnu aplikaciju.</h1>
-		<a style="font-size: 40px;" id="openAppLink" href="addiko://">Otvorite aplikaciju</a>
+		<a style="font-size: 40px;" id="openAppLink">Otvorite aplikaciju</a>
 		<img style="display:none;" src="qr.png" id="qrImage" width="400">
 	</body>
 	<script>
@@ -27,9 +27,10 @@
 	    var appURIhuawei = "addiko:";
 
 	    // Define URLs for your app in each app store.
-	    var appleAppStoreURL = "https://apps.apple.com/app/id1135444312"; // replace 'YOUR_APP_ID' with your app's ID
-	    var googlePlayStoreURL = "https://play.google.com/store/apps/details?id=com.addiko.mobile.serbia"; // replace 'YOUR_PACKAGE_NAME' with your app's package name
-	    var huaweiStoreURL = "https://appgallery.huawei.com/app/C104332571"; // replace 'YOUR_APP_DETAILS' with the appropriate path or ID
+	
+	    var appleAppStoreURL = "https://apps.apple.com/app/id6474673361"; // replace 'YOUR_APP_ID' with your app's ID
+	    var googlePlayStoreURL = "https://play.google.com/store/apps/details?id=com.addiko.corp.srb"; // replace 'YOUR_PACKAGE_NAME' with your app's package name
+	    var huaweiStoreURL = "https://appgallery.huawei.com/app/C109836457"; // replace 'YOUR_APP_DETAILS' with the appropriate path or ID
 	
 	    // Attempt to open the app using the custom URI scheme.
 	    // If the app isn't installed, this will fail and we'll catch that to redirect to the app store.
@@ -45,77 +46,15 @@
 		    e.preventDefault(); // Prevent default behavior
 		
 		    if (iOS) {
-			gtag('event', 'virtual_pageview', {
-		            'page_path': '/virtual/ios-click',
-		            'page_title': 'iOS App Click'
-		        });
-		        var hasAppOpened = false;
-		
-		        var clearEventsAndRedirectToStore = function() {
-		            if (!hasAppOpened) {
-		                document.removeEventListener('visibilitychange', handleVisibilityChange);
-		                window.location = appleAppStoreURL;
-		            }
-		        };
-		
-		        var handleVisibilityChange = function() {
-		            if (document.hidden) {
-		                hasAppOpened = true;
-		            }
-		        };
-		        document.addEventListener('visibilitychange', handleVisibilityChange);
-		
-		        window.location = appURIios; 
-		
-		        setTimeout(clearEventsAndRedirectToStore, 2000); // Adjust based on testing
+			 window.location = appleAppStoreURL;
 		    } else if (android){
-			gtag('event', 'virtual_pageview', {
-		            'page_path': '/virtual/android-click',
-		            'page_title': 'Android App Click'
-		        });
-			var hasAppOpened = false;
-		
-		        var clearEventsAndRedirectToStore = function() {
-		            if (!hasAppOpened) {
-		                document.removeEventListener('visibilitychange', handleVisibilityChange);
-		                window.location = googlePlayStoreURL;
-		            }
-		        };
-		
-		        var handleVisibilityChange = function() {
-		            if (document.hidden) {
-		                hasAppOpened = true;
-		            }
-		        };
-		        document.addEventListener('visibilitychange', handleVisibilityChange);
-		
-		        window.location = appURIandroid; 
-		
-		        setTimeout(clearEventsAndRedirectToStore, 2000); // Adjust based on testing
+			
+		        window.location = googlePlayStoreURL;
+		            
 		    } else if (huawei) {
-			gtag('event', 'virtual_pageview', {
-		            'page_path': '/virtual/huawei-click',
-		            'page_title': 'Huawei App Click'
-		        });
-			var hasAppOpened = false;
-		
-		        var clearEventsAndRedirectToStore = function() {
-		            if (!hasAppOpened) {
-		                document.removeEventListener('visibilitychange', handleVisibilityChange);
-		                window.location = huaweiStoreURL;
-		            }
-		        };
-		
-		        var handleVisibilityChange = function() {
-		            if (document.hidden) {
-		                hasAppOpened = true;
-		            }
-		        };
-		        document.addEventListener('visibilitychange', handleVisibilityChange);
-		
-		        window.location = appURIhuawei; 
-		
-		        setTimeout(clearEventsAndRedirectToStore, 2000); // Adjust based on testing
+			
+			window.location = huaweiStoreURL;
+		            
 		    }
 		});
 	    } else {
